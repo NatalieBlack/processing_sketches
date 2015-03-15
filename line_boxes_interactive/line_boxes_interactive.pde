@@ -1,8 +1,9 @@
-int i;
+int i, j;
 color[] colours = {#66CCFF, #5D6B70, #59a699, #DEFF69, #B1C2C9};
 color COLOUR;
 int WINDOWSIZE, BOXSIZE, MARGIN, COLSNUM;
 int minx, miny, col, row;
+int doublecolour;
 
 void setup() {
   WINDOWSIZE = 495;
@@ -14,6 +15,8 @@ void setup() {
   noStroke();
   background(255);
   i = 0;
+  j = 0;
+  doublecolour = 0;
   col = 0;
   row = 0;
   minx = MARGIN;
@@ -23,13 +26,12 @@ void setup() {
 }
 
 void mousePressed() {
-  if(i < COLSNUM*COLSNUM - 1){
+  if(i++ < COLSNUM*COLSNUM - 1){
     minx = (minx + BOXSIZE + MARGIN) % (WINDOWSIZE-MARGIN);
     col = (col + 1);
     row = col/COLSNUM;
     miny = ((BOXSIZE + MARGIN)*(row)) % (WINDOWSIZE-MARGIN);
-    println(minx);
-    COLOUR = getNextColour();
+    doublecolour++;
   }
   else {
     stop();
@@ -37,8 +39,23 @@ void mousePressed() {
 }     
 
 color getNextColour(){
-  i++;
-  return colours[i%colours.length];
+  j++;
+  return colours[j%colours.length];
+}
+
+void repeat(){
+int a = minx + int(random(BOXSIZE));
+      int b = miny + 1 + int(random(BOXSIZE));
+      int c;
+      int d;
+      do {
+        c = minx + int(random(BOXSIZE));
+      } while(a == c);
+      do {
+        d = miny + 1 + int(random(BOXSIZE));
+      } while (d == b);
+
+      taperedLine(a,b,c,d);
 }
 
 void draw() { 
@@ -52,8 +69,14 @@ void draw() {
       do {
         d = miny + 1 + int(random(BOXSIZE));
       } while (d == b);
+      COLOUR = getNextColour();
       stroke(COLOUR);
       taperedLine(a,b,c,d);
+      if(COLOUR == colours[doublecolour % colours.length]) {
+          repeat();
+          repeat();
+          repeat();
+      }
 }
 
 void taperedLine(int x1, int y1, int x2, int y2){
