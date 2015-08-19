@@ -1,0 +1,107 @@
+PImage img, img2, img3, img4, img5;
+color[] colours = {#9BE0D2, #A2BCE2, #B9F2A7, #CBF4EC, #F5FEFC, #6CC4B3, #43A08E, #4E71A5, #7697C7, #CFDEF4, #F6F9FE, #77D559, #98E67F, #DAFAD0, #F8FFF5};
+color COLOUR;
+int i,j;
+int WINDOWSIZE;
+
+color getNextColour(){
+  i++;
+  return colours[i%colours.length];
+}
+
+void setup() {
+  WINDOWSIZE = 675;
+  frameRate(10);
+  size(WINDOWSIZE, WINDOWSIZE); 
+  i = 0;
+  j = 0;
+  strokeWeight(1);
+  stroke(#FFFFFF);
+  fill(255, 10);
+  img = createImage(230, 230, ARGB);
+  for(int i = 0; i < img.pixels.length; i++) {
+    float a = map(i, 255, img.pixels.length, 255, 100);
+    img.pixels[i] = color(a, 100, a); 
+  }
+  img2 = createImage(230, 230, ARGB);
+  for(int i = 0; i < img2.pixels.length; i++) {
+    float a = map(i, 255, img2.pixels.length, 255, 100);
+    img2.pixels[img2.pixels.length-i-1] = color(a, a-25, 255); 
+  }
+  img4 = createImage(230, 230, ARGB);
+  for(int i = 0; i < img4.pixels.length; i++) {
+    float a = map(i, 255, img4.pixels.length, 255, 100);
+    img4.pixels[i] = color(0, a, a); 
+  }
+  img3 = createImage(230, 230, ARGB);
+  for(int i = 0; i < img3.pixels.length; i++) {
+    float a = map(i, 255, img3.pixels.length, 255, 100);
+    img3.pixels[i] = color(0, 153, a); 
+  }
+  img5 = createImage(230, 230, ARGB);
+  for(int i = 0; i < img5.pixels.length; i++) {
+    float a = map(i, 255, img5.pixels.length, 255, 100);
+    img5.pixels[i] = color(0, a, 200); 
+  }
+  mybackground();
+}
+void mybackground() {
+  background(0);
+  //image(img, 0, 0);
+  //image(img2, 100, 0);
+  //image(img3, 200, 0);
+  //image(img4, 300, 0);
+  //image(img5, 400, 0);
+  //image(img5, 500, 0);
+}
+
+void mousePressed(){
+    mybackground();
+}
+
+void draw() {
+  if(coinToss()){
+    mybackground();
+  } else {
+    sketchyCircle();
+  }
+}
+
+boolean coinToss(){
+  return int(random(50)) == 1; 
+}
+
+void sketchyCircle(){
+  beginShape();
+  int x1 = int(random(WINDOWSIZE));
+  int y1 = int(random(WINDOWSIZE));
+  color colour = getNextColour();
+  noFill();
+  strokeWeight(4);
+  stroke(colour);
+  
+
+  vertex(x1,y1);
+  //bezierVertex(0, 0, WINDOWSIZE, x1, y1, WINDOWSIZE);
+  //bezierVertex(0, 0, WINDOWSIZE, y1, x1, WINDOWSIZE);
+  //bezierVertex(0, 0, WINDOWSIZE, x1, x1, WINDOWSIZE);
+  bezierVertex(int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), int(random(100)), x1, x1, int(random(WINDOWSIZE)));
+
+  bezierVertex(int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), y1, y1, int(random(WINDOWSIZE)));
+  //bezierVertex(0, 0, x1, WINDOWSIZE, WINDOWSIZE, y1);
+
+  endShape();
+  
+  beginShape();
+  //vertex(int(random(WINDOWSIZE)),int(random(WINDOWSIZE)));
+  //bezierVertex(0, 0, WINDOWSIZE, x1, y1, WINDOWSIZE);
+  //bezierVertex(0, 0, WINDOWSIZE, y1, x1, WINDOWSIZE);
+  //bezierVertex(0, 0, WINDOWSIZE, x1, x1, WINDOWSIZE);
+  //bezierVertex(0, 0, WINDOWSIZE, x1, x1, WINDOWSIZE);
+
+  //bezierVertex(0, 0, WINDOWSIZE, y1, y1, WINDOWSIZE);
+  //bezierVertex(int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), x1, int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), y1);
+
+  endShape();
+
+}
