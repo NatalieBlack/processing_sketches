@@ -5,13 +5,13 @@ color COLOUR;
 int p;
 float hoverRange;
 int WINDOWSIZE;
-int xSpacing;
+float xSpacing;
 int num;
 Character LETTER;
 int redboost, blueboost, jboost, kboost, wboost,boost5,boost6;
 int XRANGE, YRANGE;
 int ALPHA;
-Character[] letters = {'1','2','3','4','5','6','7','8','9'};
+Character[] letters = {'0', '1','2','3','4','5','6','7','8','9'};
 class Coord{
   float x,y;
   Coord(float _x, float _y)
@@ -26,12 +26,12 @@ void setup() {
   jboost = 75;
   kboost = wboost = 10;
   boost5 = boost6 = 10;
-  xSpacing = 20;
   XRANGE = YRANGE = WINDOWSIZE;
   hoverRange = 8;
   ALPHA = 10;
   LETTER = ' ';
   WINDOWSIZE = 700;
+  xSpacing = (WINDOWSIZE*0.9)/letters.length;
   size(WINDOWSIZE, WINDOWSIZE); 
   p = 0;
   fill(255);
@@ -43,8 +43,17 @@ void setup() {
   mybackground();
 
 }
+color getNext0Colour(){
+  int q;
+ if(random(10) >= 0){
+  q = int(random(200,255));
+ } else {
+  q = int(random(40,65));
+ }
+  return color(q,ALPHA);
+}
 color getNext1Colour(){
-  int q = int(random(220,255));
+  int q = int(random(230,255));
   return color(q,ALPHA);
 }
 color getNext2Colour(){
@@ -90,7 +99,7 @@ color getNext5Colour(){
   x = int(random(50));
   r = int(random(240,255))-x;
   g = int(random(80,100))-x;
-  b = int(random(75,180))-x;
+  b = int(random(75,160))-x;
 
     return color(r+boost5,g,b,ALPHA);
 }
@@ -98,7 +107,7 @@ color getNext5Colour(){
 color getNext6Colour(){
 int r,g,b;
 int q = 100;
-  if(random(10) > 4){
+  if(random(10) > 5){
     r = int(random(45,70));
     g = int(random(15,20));
     b = int(random(r+45,255)); 
@@ -193,6 +202,8 @@ color getNextColour(Character l, int num){
 
   } else if (l == '9'){
     return getNext9Colour();
+  } else if (l == '0'){
+    return getNext0Colour();
   }else {
     r = 0;
     b = 0;
@@ -202,13 +213,13 @@ color getNextColour(Character l, int num){
 }
 
 float getXSpacing(int n){
-  int ret = xSpacing*(n+1);
+  float ret = xSpacing*(n+1);
   return ret;
 }
 
 float getYSpacing(int n){
   int ySpacing = 50;
-  int numCols = WINDOWSIZE/xSpacing;
+  int numCols = int(WINDOWSIZE/xSpacing);
   int row = n / numCols + 1;
   int ret = ySpacing * row;
   return ret;
