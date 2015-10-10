@@ -18,7 +18,7 @@ class Scribbler {
     this.slope = s;
     this.r = r;
     this.tr = baset + int(random(-tvar, tvar));
-    this.colours = new color[] {color(175),color(175,145,30),color(100),color(225), color(175,125,30)};
+    this.colours = new color[] {#FF8E64, #FF581A,#FF733F,#FFAD8E,#FFD3C3,#FFBC64,#FFE5C3,#FFCE8E};
     this.cindex = 0;
     getNextColour();
   }
@@ -73,7 +73,7 @@ void setup() {
   size(SIZE, SIZE);
   background(10);
   strokeWeight(SW);
-  baset = 5;
+  baset = 15;
   tvar = 5;
   s2 = new Scribbler(random(SIZE), random(SIZE), 20, 5);
 
