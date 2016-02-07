@@ -70,7 +70,7 @@ void setup() {
   SW = 1;
   SIZE = 600;
   strokeCap(SQUARE);
-  size(SIZE, SIZE);
+  surface.setSize(SIZE, SIZE);
   background(10);
   strokeWeight(SW);
   baset = 5;

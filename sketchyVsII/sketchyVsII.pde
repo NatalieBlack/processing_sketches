@@ -14,7 +14,7 @@ void setup() {
   q = 0;
   WINDOWSIZE = 600;
   COLSNUM = 5;
-  size(WINDOWSIZE, WINDOWSIZE);
+  surface.setSize(WINDOWSIZE, WINDOWSIZE);
   BOXSIZE = int(float(WINDOWSIZE) / COLSNUM);
   MARGIN = (WINDOWSIZE-(BOXSIZE*COLSNUM))/(COLSNUM+1);
   imageMode(CENTER);

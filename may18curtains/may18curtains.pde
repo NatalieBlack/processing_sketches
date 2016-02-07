@@ -21,7 +21,7 @@ void setup() {
   gly = 0;
   glx2 = 0;
   gly2 = 0;
-  size(WINDOWSIZE, WINDOWSIZE);
+  surface.setSize(WINDOWSIZE, WINDOWSIZE);
   BOXSIZE = int(float(WINDOWSIZE) / COLSNUM);
   MARGIN = (WINDOWSIZE-(BOXSIZE*COLSNUM))/(COLSNUM+1);
   imageMode(CENTER);

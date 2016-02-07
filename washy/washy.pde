@@ -149,7 +149,7 @@ void setup() {
   SW = 50;
   SIZE = 600;
   strokeCap(SQUARE);
-  size(SIZE, SIZE);
+  surface.setSize(SIZE, SIZE);
   background(255);
 
   //background(color(0,100,100, 1));

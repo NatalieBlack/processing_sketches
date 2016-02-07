@@ -20,7 +20,7 @@ void setup() {
   toppos = 0;
   dir = 1;
   linecount = 0;
-  size(WINDOWSIZE, WINDOWSIZE);
+    surface.setSize(WINDOWSIZE, WINDOWSIZE);
   BOXSIZE = int(float(WINDOWSIZE) / COLSNUM);
   MARGIN = (WINDOWSIZE-(BOXSIZE*COLSNUM))/(COLSNUM+1);
   imageMode(CENTER);

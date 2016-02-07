@@ -14,7 +14,7 @@ void setup() {
   COLSNUM = 3;
   BGCOLOUR = 230;
   SW = 1;
-  size(WINDOWSIZE, WINDOWSIZE);
+  surface.setSize(WINDOWSIZE, WINDOWSIZE);
   BOXSIZE = 2*int(float(WINDOWSIZE) / COLSNUM);
   MARGIN = (WINDOWSIZE-(BOXSIZE*COLSNUM))/(COLSNUM+1);
   imageMode(CENTER);
@@ -84,4 +84,3 @@ vertex(x1,y1);
 bezierVertex(int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), int(random(WINDOWSIZE)), int(random(WINDOWSIZE)));
 endShape();
 }
-

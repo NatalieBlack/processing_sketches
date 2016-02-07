@@ -1,12 +1,15 @@
 
 Segment seg;
 Segment seg2;
+Segment seg3;
 
 void setup() {
   size(700, 400);
   strokeWeight(9);
   seg = new Segment('b',1, "hello world");
   seg2 = new Segment('g',1, "ah, the sea");
+  seg3 = new Segment('g',0, "ah, the sea");
+
 
 }
 
@@ -15,6 +18,7 @@ void draw() {
 
   doYourThing(seg);
    doYourThing2(seg2);
+   doYourThing2(seg3);
 
 }
 class Segment{

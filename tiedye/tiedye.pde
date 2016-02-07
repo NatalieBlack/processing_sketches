@@ -125,14 +125,14 @@ void setup() {
   SW = 10;
   SIZE = 600;
   strokeCap(SQUARE);
-  size(SIZE, SIZE);
+  surface.setSize(SIZE, SIZE);
   background(255);
 
   //background(color(0,100,100, 1));
   strokeWeight(SW);
   baset = 5;
   tvar = 0;
-  s2 = new Scribbler(random(SIZE), random(SIZE), 15, 5);
+  s2 = new Scribbler(random(SIZE), random(SIZE), 25, 5);
 //  s1 = new Scribbler(random(SIZE), random(SIZE), 60, 5);
 
 }

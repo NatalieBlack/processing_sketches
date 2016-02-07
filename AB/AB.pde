@@ -40,7 +40,7 @@ void setup() {
   hoverRange = 10;
   frameRate(20);
   WINDOWSIZE = 700;
-  size(WINDOWSIZE, WINDOWSIZE); 
+  surface.setSize(WINDOWSIZE, WINDOWSIZE); 
   i = 0;
   mybackground();
   fill(255);

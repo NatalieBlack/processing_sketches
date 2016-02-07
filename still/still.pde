@@ -12,7 +12,7 @@ void setup() {
   COLSNUM = 3;
   BGCOLOUR = 50;
   linecount = 0;
-  size(WINDOWSIZE, WINDOWSIZE);
+  surface.setSize(WINDOWSIZE, WINDOWSIZE);
   BOXSIZE = int(float(WINDOWSIZE) / COLSNUM);
   MARGIN = (WINDOWSIZE-(BOXSIZE*COLSNUM))/(COLSNUM+1);
   imageMode(CENTER);

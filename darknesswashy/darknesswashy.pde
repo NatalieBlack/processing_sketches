@@ -13,7 +13,7 @@ class Scribbler {
   float x1, y1, x2,y2;
   int slope;
   int r;
-  color c;
+  color c, prevc;
   int tr;
   color[] colours;
   int cindex;
@@ -34,18 +34,8 @@ class Scribbler {
   }
   
   void getNextColour(){
-        c = color(random(255)%c);
-        println(str(c));
-//      if(random(10)<5){
-//      c = color(random(190,255)); 
-//      } else if(random(10)<7){
-//              c = color(random(25)); 
-//
-//      } else {
-//              c = color(random(90,155)); 
-//
-//      }
-    
+    prevc = c;
+    c = color(random(255)%c);
   }
   void move(){
     x2 = random(0, SIZE);
@@ -64,17 +54,15 @@ class Scribbler {
     }
   }
   
-  void scribble() {
-    
-    tr = baset + int(random(-tvar, tvar));
-      
+  void setTransparency() {
+    tr = baset + int(random(-tvar, tvar));  
     stroke(c, tr);
+  }
+  
+  void scribble() {
+    setTransparency();
     move();
     drawSwoosh();
-  }
-  void drawMark(float x, float y){
-    int s = 5;
-    ellipse(x, y, s, s);
   }
   
   void drawSwoosh(){
@@ -82,20 +70,11 @@ class Scribbler {
     float n;
    
       
-     n = 10.0;  
+     n = random(2,9);  
       
     float x= x1+random(-r,r);
     float y=y1+random(-r,r);
 
-//    beginShape();
-//    vertex(x,y);
-//
-//    for(int i = 0; i < n; i++){
-//      bezierVertex(x, y, x1+ ((1+i)*(x2-x1)/(n*2)), y1 + ((1+i)*(y2-y1)/(2*n)), x1 + ((1+i)*(x2-x1)/n), y1 + ((1+i)*(y2-y1)/n));
-//    }
-//    endShape();
-//    
-      //int r = 100;
    x1 = y1 = SIZE*0.5;
    beginShape();
  
@@ -135,42 +114,25 @@ endShape();
     int q = SIZE;
   return int(c) + int(random(0-q,q));
 }
-   void drawLine(){
 
-    float n = 10.0;    
-    for(int i = 0; i < n; i++){
-      line(x1, y1, x1 + ((1+i)*(x2-x1)/n), y1);
-    }
-    y1 = y2;
-  }
-  
-  void drawX(float x, float y){
-    line(x-slope,y+slope,x+slope,y-slope);
-    line(x-slope, y-slope, x+slope, y+slope);
-  }
 }
 
 
 void setup() {
-  SW = 50;
+  SW = 45;
   SIZE = 600;
   strokeCap(SQUARE);
-  size(SIZE, SIZE);
+  surface.setSize(SIZE, SIZE);
   background(255);
   count = 0;
 
-  //background(color(0,100,100, 1));
   strokeWeight(SW);
-  baset = 5;
-  tvar = 0;
+  baset = 6;
+  tvar = 4;
   s2 = new Scribbler(random(SIZE), random(SIZE), 15, 5);
-//  s1 = new Scribbler(random(SIZE), random(SIZE), 60, 5);
 
 }
 
 void draw() {
-//    s1.scribble();
     s2.scribble();
-    //s3.scribble();
-
 }
