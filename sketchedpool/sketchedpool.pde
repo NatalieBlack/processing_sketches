@@ -2,6 +2,7 @@ int SIZE;
 Scribbler s1, s2,s3;
 int baset, tvar;
 int SW;
+int BG = color(255);
 
 void mousePressed(){
   //background(color(0,100,100, 1));
@@ -34,7 +35,7 @@ class Scribbler {
   
   void getNextColour(){
     if(random(5)>4){
-      c = color(255);
+      c = color(BG);
     } else {
       c = color(random(75), random(75,175), random(75,225)); 
     }
@@ -111,7 +112,7 @@ class Scribbler {
     endShape();
 beginShape();
   vertex(x1, y1);
-  stroke(255,35);
+  stroke(BG,35);
 
 int sm = 30;
 for(int i = 0; i < n; i++){
@@ -149,8 +150,8 @@ void setup() {
   SW = 1;
   SIZE = 600;
   strokeCap(SQUARE);
-  size(SIZE, SIZE);
-  background(255);
+  surface.setSize(SIZE, SIZE);
+  background(BG);
 
   //background(color(0,100,100, 1));
   strokeWeight(SW);

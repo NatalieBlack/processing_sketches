@@ -64,7 +64,7 @@ class Scribbler {
 
 void setup() {
   SIZE = 600;
-  size(SIZE, SIZE);
+  surface.setSize(SIZE, SIZE);
   background(30);
   strokeWeight(2);
   baset = 80;

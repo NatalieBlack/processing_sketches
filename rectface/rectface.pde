@@ -1,8 +1,10 @@
-int SIZE;
+int SIZE = 600;
 Scribbler s1, s2,s3;
 int baset, tvar;
 int SW;
-int BG = 35;
+float j = 0;
+float[] exes = {random(SIZE*0.25, SIZE*0.75), random(SIZE*0.25, SIZE*0.75), random(SIZE*0.25, SIZE*0.75), random(SIZE*0.25, SIZE*0.75)};
+
 
 void mousePressed(){
   //background(color(0,100,100, 1));
@@ -17,14 +19,12 @@ class Scribbler {
   int tr;
   color[] colours;
   int cindex;
-  int copt;
 
-  Scribbler(float x1, float y1, int r, int s, int copt) {
+  Scribbler(float x1, float y1, int r, int s) {
     this.x1 = 0;
     this.y1 = y1;
     this.slope = s;
     this.r = r;
-    this.copt = copt;
     this.tr = baset + int(random(-tvar, tvar));
     this.colours = new color[] {color(0,100,75),color(0,75,100)};
     this.cindex = 0;
@@ -37,25 +37,11 @@ class Scribbler {
   
   void getNextColour(){
     if(random(5)>4){
-      c = color(0);
+      c = color(255);
     } else {
-      getNextCustomColour();
+      c = color(random(75), random(75,175), random(75,225)); 
     }
   }
-  void getNextCustomColour(){
-    if(copt == 1){
-        //c = color(random(75), random(75,175), random(75,225));
-       c = color(255,0,0); 
-    } else if(copt == 2){
-      int ccc = int(random(175,245));
-        //c = color(ccc+random(-10,10), ccc+random(-10,10),ccc+random(-10,10)); 
-c = color(0,255,0);
-    } else {
-        //c = color(random(75), random(75,225), random(75,175)); 
-c = color(0,0,255);
-    }
-}
-
   void move(){
     x2 = random(0, SIZE);
 
@@ -89,12 +75,7 @@ c = color(0,0,255);
   
   void drawSwoosh(){
     noFill();
-    float n;
-    if(c == color(0)){   
-    n = 25.0; }
-      else {
-     n = 10.0;  
-      }  
+    float n = 10.0;    
     float x= x1+random(-r,r);
     float y=y1+random(-r,r);
 
@@ -110,41 +91,22 @@ c = color(0,0,255);
    x1 = y1 = SIZE*0.5;
    beginShape();
  
-  vertex(x1, y1);
+  vertex(x, y);
   
   for(int i = 0; i < n; i++){
-
-      bezierVertex(getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r));
-  }    for(int i = 0; i < n; i++){
-
-      bezierVertex(getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r));
-  }for(int i = 0; i < n; i++){
-
   
     bezierVertex(getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r),random(SIZE), random(SIZE));
     }
     
   
     endShape();
-beginShape();
-  vertex(x1, y1);
-  stroke(BG,35);
 
-int sm = 30;
-for(int i = 0; i < n; i++){
-
-  
-    bezierVertex(getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r),x1+random(0-sm,sm), y1+random(0-sm,sm));
-    }
-    
-endShape();
 
     y1 = y2;
   }
   
   int getPoint(float c, int r){
-    int q = SIZE;
-  return int(c) + int(random(0-q,q));
+  return int(c) + int(random(0-r,r));
 }
    void drawLine(){
 
@@ -163,25 +125,67 @@ endShape();
 
 
 void setup() {
-  SW = 2;
-  SIZE = 600;
+  SW = 10;
   strokeCap(SQUARE);
   surface.setSize(SIZE, SIZE);
-  background(BG);
-
+  background(30);
   //background(color(0,100,100, 1));
   strokeWeight(SW);
   baset = 5;
   tvar = 0;
-  s1 = new Scribbler(random(SIZE), random(SIZE), 15, 5, 1);
-  s2 = new Scribbler(random(SIZE), random(SIZE), 15, 5, 2);
-  s3 = new Scribbler(random(SIZE), random(SIZE), 15, 5, 3);
+  s2 = new Scribbler(random(SIZE), random(SIZE), 25, 5);
+//  s1 = new Scribbler(random(SIZE), random(SIZE), 60, 5);
 
 }
 
+void lines() {
+  stroke(0, 75);
+  strokeWeight(2);
+    for(int i = 0; i < exes.length; i++){
+          float x = exes[i];
+
+    line(x,SIZE*0.25,x,(SIZE*0.25+(SIZE*0.5/600.0)*j));
+    }
+    j = (j + 1);
+    println(j);
+}
+
 void draw() {
-    s1.scribble();
+//    s1.scribble();
     s2.scribble();
-    s3.scribble();
+    //fill(30,30,30,2);
+    stroke(30);
+    strokeWeight(3);
+    line(20, 30, SIZE-20, 30);
+    line(SIZE-35, 20, SIZE-35, SIZE-25);
+    line(20, SIZE-25, 90, SIZE-25);
+    line(30, SIZE-90, 30, SIZE-10);
+    rect(SIZE*0.4, SIZE*0.4, SIZE*0.35, SIZE*0.5);
+    rect(SIZE*0.2, SIZE*0.15, SIZE*0.6, SIZE*0.3);
+    rect(SIZE*0.15, SIZE*0.3, SIZE*0.4, SIZE*0.35);
+    strokeWeight(1.25);
+    //triangle(SIZE*0.385, SIZE*0.465, SIZE*0.27, SIZE*0.465, SIZE*0.385, SIZE*0.58);
+    line(SIZE*0.385, SIZE*0.465, SIZE*0.385, SIZE*0.635);
+    //triangle(0, 0, SIZE,0, SIZE, SIZE);
+    //lines();
+    noFill();
+//    fill(255,1);
+//    stroke(255, 1);
+//
+//
+//    ellipse(SIZE*0.5,SIZE*0.5,50,50);
+//        ellipse(SIZE*0.5,SIZE*0.5,40,40);
+//            fill(255,10);
+//
+//            stroke(255, 10);
+//
+//        ellipse(SIZE*0.5,SIZE*0.5,30,30);
+//        ellipse(SIZE*0.5,SIZE*0.5,20,20);
+//        ellipse(SIZE*0.5,SIZE*0.5,10,10);
+//                ellipse(SIZE*0.5,SIZE*0.5,5,5);
+//
+//
+
+    //s3.scribble();
 
 }

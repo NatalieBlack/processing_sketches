@@ -1,13 +1,14 @@
-int SIZE;
-Scribbler s1, s2,s3;
-int baset, tvar;
-int SW;
+int SIZE = 600;
+Garden g;
+int baset = 200;
+int SW = 10;
+int BG = 25;
 
 void mousePressed(){
   background(color(0,100,100, 1));
 }
 
-class Scribbler {
+class Garden {
   float x1, y1, x2,y2;
   int slope;
   int r;
@@ -15,14 +16,11 @@ class Scribbler {
   int tr;
   color[] colours;
   int cindex;
+  int[] sizes = {60, 80, 100, 150, 70, 90};
 
-  Scribbler(float x1, float y1, int r, int s) {
-    this.x1 = 0;
-    this.y1 = y1;
-    this.slope = s;
-    this.r = r;
-    this.tr = baset + int(random(-tvar, tvar));
-    this.colours = new color[] {color(190,95,0),color(150,20,0),color(150,100,0), color(225)};
+  Garden() {
+    this.tr = baset;
+    this.colours = new color[] {color(190,95,0),color(150,20,0), color(225)};
     this.cindex = 0;
     getNextColour();
   }
@@ -30,115 +28,64 @@ class Scribbler {
   void getNextColour(){
     c = colours[cindex++%colours.length];
   }
-  void move(){
-    x2 = random(0, SIZE);
-
-    y2 = y1 + random(-r,r);
-    
+  
+  void colour(){
+   
     if(random(20)>19){
-      //x1 = SIZE - x1;
-            getNextColour();
-      
-      
+      getNextColour();
     }
-
-    if(y2 >= SIZE || y2 <= 0){
-      y2 = random(0, SIZE);
-    }
-  }
-  
-  void scribble() {
-    
-    tr = baset + int(random(-tvar, tvar));
-      
     stroke(c, tr);
-    move();
-    drawSwoosh(SIZE*0.5, SIZE*0.5);
-    //fill(35);
-    //noStroke();
-    //triangle(0.0,0.0,SIZE*0.5,0.0, 0.0, SIZE*0.5);
-    //triangle(SIZE/2,0,SIZE,0,SIZE,SIZE/2);
-    //triangle(0,SIZE,SIZE/2,SIZE,0,SIZE/2);
-    //triangle(SIZE,SIZE/2,SIZE/2,SIZE,SIZE,SIZE);
-    //noFill();
-  }
-  void drawMark(float x, float y){
-    int s = 5;
-    ellipse(x, y, s, s);
+
   }
   
-  void drawSwoosh(float x, float y){
-noFill();
-    float n = 10.0;    
-    //float x= x1+random(-r,r);
-    //float y=y1+random(-r,r);
-
-//    beginShape();
-//    vertex(x,y);
-//
-//    for(int i = 0; i < n; i++){
-//      bezierVertex(x, y, x1+ ((1+i)*(x2-x1)/(n*2)), y1 + ((1+i)*(y2-y1)/(2*n)), x1 + ((1+i)*(x2-x1)/n), y1 + ((1+i)*(y2-y1)/n));
-//    }
-//    endShape();
-//    
-      //int r = 100;
-      x1 = random(SIZE);
-      y1 = random(SIZE);
-   beginShape();
- 
-  vertex(x1, SIZE);
-      for(int i = 0; i < n; i++){
-    bezierVertex(getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r),x1,y1);
-  }     for(int i = 0; i < n; i++){
-
+  void grow() {
+    colour();
+    flower();
+    die();
+  }
   
-    bezierVertex(getPoint(x1,r), getPoint(y1,r),getPoint(x1,r), getPoint(y1,r),x1, y1);
+  void die() {
+    if(random(100)>99) {
+      background(BG);
     }
-    
+  }
   
+  void flower(){
+    float n = 20.0;    
+    x1 = random(SIZE);
+    y1 = random(SIZE);
+    beginShape();
+ 
+      vertex(x1, SIZE);
+      
+      for(int i = 0; i < n; i++){
+        bezierVertex(getPoint(x1), getPoint(y1),getPoint(x1), getPoint(y1),x1,y1);
+      }
+ 
     endShape();
 
-
-    y1 = y2;
   }
   
-  int getPoint(float c, int r){
-  return int(c) + int(random(0-r,r));
-}
-   void drawLine(){
+  int getPoint(float p){
+    int ri = int(random(sizes.length));
+    r = sizes[ri];
+    return int(p) + int(random(0-r,r));
+  }
 
-    float n = 10.0;    
-    for(int i = 0; i < n; i++){
-      line(x1, y1, x1 + ((1+i)*(x2-x1)/n), y1);
-    }
-    y1 = y2;
-  }
-  
-  void drawX(float x, float y){
-    line(x-slope,y+slope,x+slope,y-slope);
-    line(x-slope, y-slope, x+slope, y+slope);
-  }
 }
 
 
 void setup() {
-  SW = 10;
-  SIZE = 600;
   strokeCap(SQUARE);
   surface.setSize(SIZE, SIZE);
-  background(35);
-
-  //background(color(0,100,100, 1));
+  background(BG);
   strokeWeight(SW);
-  baset = 85;
-  tvar = 0;
-  s2 = new Scribbler(random(SIZE), random(SIZE), 60, 5);
+  g = new Garden();
   frameRate(20);
+  noFill();
 
 }
 
 void draw() {
-    //s1.scribble();
-    s2.scribble();
-    //s3.scribble();
+  g.grow();
 }

@@ -2,6 +2,7 @@ int SIZE;
 Scribbler s1, s2,s3;
 int baset, tvar;
 int SW;
+int BG = 255;
 
 void mousePressed(){
   //background(color(0,100,100, 1));
@@ -29,12 +30,12 @@ class Scribbler {
   }
   
   void white(){
-    c = color(255);
+    c = color(BG);
   }
   
   void getNextColour(){
     if(random(5)>4){
-      c = color(255);
+      c = color(BG);
     } else {
       c = color(random(75), random(75,175), random(75,225)); 
     }
@@ -73,7 +74,7 @@ class Scribbler {
   void drawSwoosh(){
     noFill();
     float n;
-    if(c == color(255)){   
+    if(c == color(BG)){   
     n = 25.0; }
       else {
      n = 10.0;  
@@ -111,7 +112,7 @@ class Scribbler {
     endShape();
 beginShape();
   vertex(x1, y1);
-  stroke(255,35);
+  stroke(BG,35);
 
 int sm = 30;
 for(int i = 0; i < n; i++){
@@ -150,7 +151,7 @@ void setup() {
   SIZE = 600;
   strokeCap(SQUARE);
   surface.setSize(SIZE, SIZE);
-  background(255);
+  background(BG);
 
   //background(color(0,100,100, 1));
   strokeWeight(SW);

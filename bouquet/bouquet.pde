@@ -22,7 +22,7 @@ class Scribbler {
     this.slope = s;
     this.r = r;
     this.tr = baset + int(random(-tvar, tvar));
-    this.colours = new color[] {color(10),color(225), color(10,150,170)};
+    this.colours = new color[] {color(10),color(225), color(5,77,62)};
     this.cindex = 0;
     getNextColour();
   }
@@ -55,11 +55,16 @@ class Scribbler {
     move();
     drawSwoosh(SIZE*0.5, SIZE*0.5);
     fill(35);
+    stroke(35,5);
+    line(SIZE*0.5,0,0,SIZE*0.5);
+    line(SIZE*0.5,0,SIZE,SIZE*0.5);
+    line(0,SIZE*0.5,SIZE*0.5,SIZE);
+    line(SIZE*0.5,SIZE,SIZE,SIZE*0.5);
     noStroke();
-    triangle(0.0,0.0,SIZE*0.5,0.0, 0.0, SIZE*0.5);
-    triangle(SIZE/2,0,SIZE,0,SIZE,SIZE/2);
-    triangle(0,SIZE,SIZE/2,SIZE,0,SIZE/2);
-    triangle(SIZE,SIZE/2,SIZE/2,SIZE,SIZE,SIZE);
+    triangle(0.0,0.0,SIZE*0.5-5,0.0, 0.0, SIZE*0.5-5);
+    triangle(SIZE/2+5,0,SIZE,0,SIZE,SIZE/2-5);
+    triangle(0,SIZE,SIZE/2-5,SIZE,0,SIZE/2+5);
+    triangle(SIZE,SIZE/2,SIZE/2+5,SIZE,SIZE,SIZE+5);
     noFill();
   }
   void drawMark(float x, float y){
@@ -68,7 +73,7 @@ class Scribbler {
   }
   
   void drawSwoosh(float x, float y){
-noFill();
+
     float n = 10.0;    
     //float x= x1+random(-r,r);
     //float y=y1+random(-r,r);
@@ -132,6 +137,7 @@ void setup() {
   strokeWeight(SW);
   baset = 85;
   tvar = 0;
+  noFill();
   s2 = new Scribbler(random(SIZE), random(SIZE), 60, 5);
 
 }
