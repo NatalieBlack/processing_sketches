@@ -12,7 +12,7 @@ void setup() {
   red = random(50,200);
   blue = random(50,200);
   green = random(50,200);
-  size(WINDOWWIDTH, WINDOWHEIGHT);
+  surface.setSize(WINDOWWIDTH, WINDOWHEIGHT);
   background(255);
   k = 0;
   x = 0;

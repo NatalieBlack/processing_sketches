@@ -32,7 +32,7 @@ void setup() {
   WINDOWSIZE = 700;
   xSpacing = WINDOWSIZE/letters.length;
 
-  size(WINDOWSIZE, WINDOWSIZE); 
+  surface.setSize(WINDOWSIZE, WINDOWSIZE); 
   p = 0;
   fill(255);
   for(int n = 0;n<letters.length;n++){

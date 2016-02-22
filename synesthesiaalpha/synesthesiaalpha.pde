@@ -70,7 +70,7 @@ void setup() {
   hoverRange = 8;
   LETTER = ' ';
   WINDOWSIZE = 700;
-  size(WINDOWSIZE, WINDOWSIZE); 
+  surface.setSize(WINDOWSIZE, WINDOWSIZE); 
   i = 0;
   fill(255);
   for(int n = 0;n<letters.length;n++){

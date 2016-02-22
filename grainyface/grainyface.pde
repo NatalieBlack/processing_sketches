@@ -35,10 +35,12 @@ class Scribbler {
   }
   
   void getNextColour(){
-    if(random(5)>4){
+    if(random(2)==1){
       c = color(255);
+    } else if(random(4)==2){
+      c = color(0);
     } else {
-      c = color(random(75), random(75,175), random(75,225)); 
+      c = color(random(255)); 
     }
   }
   void move(){
@@ -46,9 +48,8 @@ class Scribbler {
 
     y2 = y1 + random(-r,r);
     
-    if(random(50)>49){
-      x1 = SIZE - x1;
-      if(random(5)>3){
+    if(random(50)>39){
+      if(random(4)==3){
             getNextColour();
       }
       
@@ -78,6 +79,15 @@ class Scribbler {
     float x= x1+random(-r,r);
     float y=y1+random(-r,r);
 
+//    beginShape();
+//    vertex(x,y);
+//
+//    for(int i = 0; i < n; i++){
+//      bezierVertex(x, y, x1+ ((1+i)*(x2-x1)/(n*2)), y1 + ((1+i)*(y2-y1)/(2*n)), x1 + ((1+i)*(x2-x1)/n), y1 + ((1+i)*(y2-y1)/n));
+//    }
+//    endShape();
+//    
+      //int r = 100;
    x1 = y1 = SIZE*0.5;
    beginShape();
  
@@ -119,10 +129,12 @@ void setup() {
   strokeCap(SQUARE);
   surface.setSize(SIZE, SIZE);
   background(30);
+  //background(color(0,100,100, 1));
   strokeWeight(SW);
   baset = 5;
   tvar = 0;
   s2 = new Scribbler(random(SIZE), random(SIZE), 25, 5);
+//  s1 = new Scribbler(random(SIZE), random(SIZE), 60, 5);
 
 }
 
@@ -139,7 +151,9 @@ void lines() {
 }
 
 void draw() {
+//    s1.scribble();
     s2.scribble();
+    //fill(30,30,30,2);
     stroke(30);
     strokeWeight(3);
     line(20, 30, SIZE-20, 30);
@@ -150,10 +164,28 @@ void draw() {
     rect(SIZE*0.2, SIZE*0.15, SIZE*0.6, SIZE*0.3);
     rect(SIZE*0.15, SIZE*0.3, SIZE*0.4, SIZE*0.35);
     strokeWeight(1.25);
+    //triangle(SIZE*0.385, SIZE*0.465, SIZE*0.27, SIZE*0.465, SIZE*0.385, SIZE*0.58);
     line(SIZE*0.385, SIZE*0.465, SIZE*0.385, SIZE*0.635);
-
+    //triangle(0, 0, SIZE,0, SIZE, SIZE);
+    //lines();
     noFill();
+//    fill(255,1);
+//    stroke(255, 1);
+//
+//
+//    ellipse(SIZE*0.5,SIZE*0.5,50,50);
+//        ellipse(SIZE*0.5,SIZE*0.5,40,40);
+//            fill(255,10);
+//
+//            stroke(255, 10);
+//
+//        ellipse(SIZE*0.5,SIZE*0.5,30,30);
+//        ellipse(SIZE*0.5,SIZE*0.5,20,20);
+//        ellipse(SIZE*0.5,SIZE*0.5,10,10);
+//                ellipse(SIZE*0.5,SIZE*0.5,5,5);
+//
+//
 
-
+    //s3.scribble();
 
 }

@@ -27,7 +27,7 @@ class Scribbler {
 
 void setup() {
   SIZE = 400;
-  size(SIZE, SIZE);
+  surface.setSize(SIZE, SIZE);
   background(102);
   s1 = new Scribbler(random(SIZE), random(SIZE), 10, 255);
   s2 = new Scribbler(random(SIZE), random(SIZE), 10, color(10,100,100));

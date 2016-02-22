@@ -8,6 +8,10 @@ float x1,x2,x3,y1,y2,y3,w1,w2,w3,h1,h2,h3;
 int BG = 255;
 float[] verticals = {random(SIZE), random(SIZE), random(SIZE)};
 float[] horizontals = {random(SIZE), random(SIZE), random(SIZE)};
+float minW = 250.0;
+float minH = 250.0;
+float maxW = 450.0;
+float maxH = 450.0;
 
 void mousePressed() {
   mp();
@@ -53,17 +57,17 @@ void setup() {
   strokeWeight(SW);
   
    x1 = random(SIZE);
-      x2 = random(SIZE);
-      x3 = random(SIZE);
-      y1 = random(SIZE);
-      y2 = random(SIZE);
-      y3 = random(SIZE);
-      w1 = random(100,250);
-      w2 = random(100,250);
-      w3 = random(100,250);
-      h1 = random(100,250);
-      h2 = random(100,250);
-      h3 = random(100,250);
+      x2 = random(SIZE-150);
+      x3 = random(SIZE-150);
+      y1 = random(SIZE-150);
+      y2 = random(SIZE-150);
+      y3 = random(SIZE-150);
+      w1 = random(minW,maxW);
+      w2 = random(minW,maxW);
+      w3 = random(minW,maxW);
+      h1 = random(minH,maxH);
+      h2 = random(minH,maxH);
+      h3 = random(minH,maxH);
 }
 
 void draw() {    
@@ -77,21 +81,19 @@ void draw() {
       y1 = random(SIZE-100);
       y2 = random(SIZE-100);
       y3 = random(SIZE-100);
-      w1 = random(100,400);
-      w2 = random(100,400);
-      w3 = random(100,400);
-      h1 = random(100,400);
-      h2 = random(100,400);
-      h3 = random(100,400);
+      w1 = random(minW,maxW);
+      w2 = random(minW,maxW);
+      w3 = random(minW,maxW);
+      h1 = random(minH,maxH);
+      h2 = random(minH,maxH);
+      h3 = random(minH,maxH);
       mp();
+      resetL();
   }
 //    s1.scribble();
     //s2.scribble();
     strokeWeight(3);
-    //line(20, 30, SIZE-20, 30);
-    //line(SIZE-35, 20, SIZE-35, SIZE-25);
-    //line(20, SIZE-25, 90, SIZE-25);
-    //line(30, SIZE-90, 30, SIZE-10);
+
     noStroke();
         fill(255, 0, 0,1);
 
