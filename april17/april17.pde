@@ -11,7 +11,7 @@ color getNextColour(){
 
 void setup() {
   WINDOWSIZE = 675;
-  size(WINDOWSIZE, WINDOWSIZE); 
+  surface.setSize(WINDOWSIZE, WINDOWSIZE); 
   i = 0;
   strokeWeight(1);
   stroke(#FFFFFF);

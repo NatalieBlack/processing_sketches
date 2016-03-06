@@ -37,7 +37,7 @@ void setup() {
   baset = 50;
   tvar = 10;
   s1 = new Scribbler(random(SIZE), random(SIZE), 30, color(248, 99, 76));
-  s2 = new Scribbler(random(SIZE), random(SIZE), 10, color(15, 40, 20));
+  s2 = new Scribbler(random(SIZE), random(SIZE), 10, color(10, 134, 47));
   s3 = new Scribbler(random(SIZE), random(SIZE), 20, color(248, 214, 76));
 
 }
