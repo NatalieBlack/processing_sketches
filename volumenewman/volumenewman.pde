@@ -46,7 +46,7 @@ void draw() {
 }
 
 void drawNM() {
-  strokeWeight(1);
+  strokeWeight(1.5);
     topLeft(color(chigh, chigh, clow, o));
 
   topRight(color(clow, chigh+25, chigh-25, o));
