@@ -24,7 +24,7 @@ void setup() {
   textAlign(CENTER, CENTER);
 }
 void loadImgs() {
-  String[] fnames = {"bubble", "kapow", "kaboom", "blast", "blast0", "blast1", "blast2", "blast3", "blast4", "blast5", "blast6", "blast7", "blast8", "speech", "speech1", "speech2", "speech3", "speech4", "speech5", "thought"};
+  String[] fnames = {"bubble", "kapow", "kaboom", "blast1", "blast3", "blast2", "blast7", "blast4", "blast8", "blast5", "blast", "speech4", "speech1", "speech5", "speech3", "thought"};
   imgs = new PImage[fnames.length];
   blurred_imgs = new PImage[fnames.length];
   
@@ -81,6 +81,47 @@ void bubbles(int h, String n, String name) {
   }
 }
 
+void bubblesRepeat(int h, String n, String name){
+    float tr = map(("LGBTQ+" + n).hashCode(), -2147483648, 2147483647, 100,200);
+
+  fill(0,0,0,tr);
+ 
+  int index;
+  float x, y;
+  if (h >= 0 ) {
+    index = abs(h)%imgs.length;
+    img = imgs[index].copy();
+  } else {
+    index = abs(h)%imgs.length;
+    img = blurred_imgs[index].copy();
+  }
+  float ii = hashMap(h, 0.25, 1.5);
+  if (n.length() % 2 == 0) {
+
+    img.resize(int(img.width*ii), int(img.height*ii)); 
+    for(int k = -1; k < width/(img.width/2.0);k++){
+      for(int kk = -1; kk < height/(img.height/2.0);kk++){
+              image(img, k*img.width/2.0, kk*img.height/2.0);
+
+      }
+    }
+    textSize(24*ii);
+    text(name, hpos(h, 0, width), vpos(h, 0, height));
+  } else {
+      pushMatrix();
+
+    scale(-1, 1);
+    img.resize(int(img.width*ii), int(img.height*ii)); 
+    popMatrix();
+    for(int k = -1; k < width/(img.width/2.0);k++){
+      for(int kk = -1; kk < height/(img.height/2.0);kk++){
+        image(img, k*img.width/2.0, kk*img.height/2.0);
+      }
+    }    textSize(24*ii);
+    text(name, hpos(h, 0, width), vpos(h, 0, height));
+  }
+}
+
 PImage blur(PImage pin) {
   PImage pout = pin.copy();
   for (int i = 0; i < 5; i++) {
@@ -121,8 +162,9 @@ float vpos(int h, float min, float max) {
      return random(min, max); 
   }
 }
+void draw() {}
 
-void draw() {  
+void mousePressed(){  
   background(colours[(cindex++/10)%colours.length]);
   nindex = ((nindex + 1) % names.length);
   name = names[int(nindex)];
@@ -131,5 +173,5 @@ void draw() {
   for(int j = 0; j < letters.length - 1; j++) {
      bubbles((letters[j]+letters[j+1]).hashCode(), letters[j] + letters[j+1], letters[j]);
   }
-  bubbles(h, name, "");
+  bubblesRepeat(h, name, "");
 }
