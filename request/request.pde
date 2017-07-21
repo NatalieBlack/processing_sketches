@@ -1,7 +1,7 @@
 import http.requests.*;
 
 void makeRequest() {
-  GetRequest get = new GetRequest("http://localhost:3000/entries");
+  GetRequest get = new GetRequest("http://still-peak-66659.herokuapp.com/entries");
   get.addHeader("Accept", "application/json");
   get.send();
   println("Reponse Content: " + get.getContent());

@@ -2,7 +2,7 @@ int i;
 String lines[];
 
 void setup() {
-  size(640, 360);
+  surface.setSize(640, 360);
   imageMode(CENTER);
   noStroke();
   background(255);

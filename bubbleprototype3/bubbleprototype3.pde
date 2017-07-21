@@ -162,9 +162,7 @@ float vpos(int h, float min, float max) {
      return random(min, max); 
   }
 }
-void draw() {}
-
-void mousePressed(){  
+void draw() {  
   background(colours[(cindex++/10)%colours.length]);
   nindex = ((nindex + 1) % names.length);
   name = names[int(nindex)];
